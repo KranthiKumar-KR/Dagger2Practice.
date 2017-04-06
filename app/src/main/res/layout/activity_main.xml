@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kranthikumarpolimetla.dagger2practice.MainActivity">
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your result here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
+
+    <EditText
+        android:id="@+id/number1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number 1"
+        android:inputType="textPersonName|number"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_above="@+id/number2"
+        android:layout_alignLeft="@+id/number2"
+        android:layout_alignStart="@+id/number2"
+        android:layout_marginBottom="29dp" />
+
+    <EditText
+        android:id="@+id/number2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number 2"
+        android:inputType="textPersonName|number"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="99dp"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addClicked"
+        android:text="add"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="176dp"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/result"
+        android:layout_alignEnd="@+id/result" />
+
+</RelativeLayout>
