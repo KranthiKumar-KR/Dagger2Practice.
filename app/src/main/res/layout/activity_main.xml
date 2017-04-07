@@ -31,7 +31,8 @@
         android:layout_above="@+id/number2"
         android:layout_alignLeft="@+id/number2"
         android:layout_alignStart="@+id/number2"
-        android:layout_marginBottom="29dp" />
+        android:layout_marginBottom="29dp"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/number2"
@@ -44,7 +45,8 @@
         tools:layout_editor_absoluteY="99dp"
         android:layout_above="@+id/button"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp" />
+        android:layout_marginBottom="54dp"
+        android:imeOptions="actionDone"/>
 
     <Button
         android:id="@+id/button"

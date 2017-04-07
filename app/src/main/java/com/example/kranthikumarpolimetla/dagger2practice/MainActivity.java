@@ -10,8 +10,14 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    AddNums addNums;
+    int numb1;
+    int numb2;
 
     @BindView(R.id.number1)
     EditText num1;
@@ -23,24 +29,25 @@ public class MainActivity extends AppCompatActivity {
     Button add;
 
     @BindView(R.id.result)
-    TextView result;
-
-    @Inject
-    AddNums addNums;
-
-    public MainActivity() {
-        AddNums.getInstance().getAddNumsComponent().inject(this);
-    }
+    TextView output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
+        AddNums.getInstance().getAddNumsComponent().inject(this);
+/*num1 = (EditText) findViewById(R.id.number1);
+        num2 = (EditText) findViewById(R.id.number2);
+        add = (Button) findViewById(R.id.button);
+        output = (TextView) findViewById(R.id.result);*/
     }
 
-    void addClicked( View view) {
-        result.setText(addNums.adding(Integer.valueOf(num1.getText().toString()), Integer.valueOf(num2.getText().toString())));
+    public void addClicked(View view) {
+        numb1 = Integer.parseInt(num1.getText().toString());
+        numb2 = Integer.parseInt(num2.getText().toString());
+        output.setText(addNums.adding(numb1, numb2)+"");
+
 
     }
 }

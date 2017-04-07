@@ -14,24 +14,32 @@ public class AddNums extends Application{
     private int num1;
     private int num2;
 
-    private static AddNums instance;
+    private  static AddNums instance = new AddNums();
     private static AddNumsComponent addNumsComponent;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
+        //setInstance();
+        //getInstance();
+       // instance = this;
+        getAddNumsComponent();
     }
 
 
-    public AddNumsComponent getAddNumsComponent() {
+    public  AddNumsComponent getAddNumsComponent() {
         if (addNumsComponent == null) {
             addNumsComponent = DaggerAddNumsComponent.builder()
                     .addNumsModule(new AddNumsModule(this))
                     .build();
+            return addNumsComponent;
         }
         return addNumsComponent;
+    }
+
+    public  void setInstance() {
+        instance = this;
     }
 
     /**
@@ -41,9 +49,6 @@ public class AddNums extends Application{
 
     public static AddNums getInstance(){
         return instance;
-    }
-
-    public AddNums() {
     }
 
     /**
