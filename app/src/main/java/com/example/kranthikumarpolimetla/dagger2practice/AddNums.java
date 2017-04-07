@@ -21,9 +21,6 @@ public class AddNums extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        //setInstance();
-        //getInstance();
-       // instance = this;
         getAddNumsComponent();
     }
 
@@ -37,15 +34,6 @@ public class AddNums extends Application{
         }
         return addNumsComponent;
     }
-
-    public  void setInstance() {
-        instance = this;
-    }
-
-    /**
-     *
-     * @return returns AddNums instance for dependency injection
-     */
 
     public static AddNums getInstance(){
         return instance;

@@ -4,20 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kranthikumarpolimetla.dagger2practice.MainActivity">
+    tools:context="com.example.kranthikumarpolimetla.dagger2practice.MainActivity"
+    android:id="@+id/mainLayout">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:gravity="center">
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your result here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
 
     <EditText
         android:id="@+id/number1"
@@ -26,12 +21,8 @@
         android:ems="10"
         android:hint="Number 1"
         android:inputType="textPersonName|number"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:layout_above="@+id/number2"
-        android:layout_alignLeft="@+id/number2"
-        android:layout_alignStart="@+id/number2"
         android:layout_marginBottom="29dp"
+        android:textAlignment="center"
         android:imeOptions="actionNext"/>
 
     <EditText
@@ -40,11 +31,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Number 2"
+        android:textAlignment="center"
         android:inputType="textPersonName|number"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="99dp"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="54dp"
         android:imeOptions="actionDone"/>
 
@@ -54,10 +42,31 @@
         android:layout_height="wrap_content"
         android:onClick="addClicked"
         android:text="add"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="176dp"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/result"
-        android:layout_alignEnd="@+id/result" />
-
+         />
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="your result is here"
+        android:textAlignment="center"
+        android:layout_marginTop="54dp" />
+    <Button
+        android:id="@+id/Imgbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="loadImage"
+        android:text="Load Image"
+        />
+</LinearLayout>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/snackbarPosition">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/snackbar_text"/>
+    </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

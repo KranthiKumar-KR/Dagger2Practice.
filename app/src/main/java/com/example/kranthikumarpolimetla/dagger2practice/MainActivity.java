@@ -1,16 +1,26 @@
 package com.example.kranthikumarpolimetla.dagger2practice;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static android.support.design.widget.Snackbar.make;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.result)
     TextView output;
 
+    @BindView(R.id.snackbarPosition)
+    View snackbarView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,5 +56,22 @@ public class MainActivity extends AppCompatActivity {
         numb1 = Integer.parseInt(num1.getText().toString());
         numb2 = Integer.parseInt(num2.getText().toString());
         output.setText(addNums.adding(numb1, numb2)+"");
+       Snackbar snackbar= Snackbar.make(snackbarView, "your result is" +addNums.adding(numb1, numb2), Snackbar.LENGTH_LONG);
+        View view2 = snackbar.getView();
+        TextView tv = (TextView) view2.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        snackbar.show();
+    }
+    @OnClick (R.id.Imgbutton)
+    public void loadImage(View view) {
+        ImageFragment fragment= new ImageFragment();
+        ImageView imageView = (ImageView) fragment.getActivity().findViewById(R.id.imageView);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainLayout, fragment); // fragmen container id in first parameter is the  container(Main layout id) of Activity
+        transaction.addToBackStack(null);  // this will manage backstack
+        transaction.commit();
+        Picasso.with(this)
+                .load("https://s3-us-west-1.amazonaws.com/testmunk-public/blog/android-logo.png")
+                .into(imageView);
     }
 }
