@@ -2,6 +2,7 @@ package com.example.kranthikumarpolimetla.dagger2practice;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -64,14 +65,11 @@ public class MainActivity extends AppCompatActivity {
     }
     @OnClick (R.id.Imgbutton)
     public void loadImage(View view) {
-        ImageFragment fragment= new ImageFragment();
-        ImageView imageView = (ImageView) fragment.getActivity().findViewById(R.id.imageView);
+        BlankFragment fragment= new BlankFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.mainLayout, fragment); // fragmen container id in first parameter is the  container(Main layout id) of Activity
         transaction.addToBackStack(null);  // this will manage backstack
         transaction.commit();
-        Picasso.with(this)
-                .load("https://s3-us-west-1.amazonaws.com/testmunk-public/blog/android-logo.png")
-                .into(imageView);
     }
+
 }
