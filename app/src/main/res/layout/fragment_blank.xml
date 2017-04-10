@@ -5,20 +5,19 @@
     tools:context="com.example.kranthikumarpolimetla.dagger2practice.BlankFragment">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:scaleType="fitXY"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent"
+        android:scaleType="fitXY" />
 
     <Button
         android:id="@+id/previousImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Previous"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        />
+        android:text="Previous" />
 
     <Button
         android:id="@+id/nextImage"
@@ -26,18 +25,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Next"
-        />
+        android:text="Next" />
+
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/snackbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/snackbar">
+        android:layout_centerHorizontal="true">
+
         <TextView
+            android:id="@+id/snackbartext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/snackbartext"/>
+            android:layout_height="wrap_content" />
     </android.support.design.widget.CoordinatorLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragGifLayout">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/endOfSlideGifs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+    </LinearLayout>
 </RelativeLayout>

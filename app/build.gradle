@@ -46,4 +46,7 @@ dependencies {
     //picasso
     def picassoVersion = "2.4.0";
     compile "com.squareup.picasso:picasso:$picassoVersion"
+
+    //gif images support
+    compile "pl.droidsonroids.gif:android-gif-drawable:1.2.6"
 }
