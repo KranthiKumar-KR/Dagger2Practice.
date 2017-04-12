@@ -15,8 +15,14 @@ import javax.inject.Inject;
 
 public class LoadImage {
     ArrayList<Image> images;
-    public static ArrayList<String> imageUrls = new ArrayList<>();
-    public static boolean setImageUrls() {
+    public final static ArrayList<String> imageUrls = new ArrayList<>();
+    public static void removeUrls() {
+        if(imageUrls.size()>0) {
+            imageUrls.clear();
+        }
+    }
+
+    public static  boolean setImageUrls() {
         imageUrls.add("https://s3-us-west-1.amazonaws.com/testmunk-public/blog/android-logo.png");
         imageUrls.add("https://s-media-cache-ak0.pinimg.com/736x/71/44/e9/7144e9c2607c90bf6cc21259a30cfd24.jpg");
         imageUrls.add("http://2.bp.blogspot.com/LatdJLz-qiZHGp9J3mm1AxMDQYVgA03tnXyDu529qhWDKlAoh9u0LrpwJPmp_E8T-Q=w300");

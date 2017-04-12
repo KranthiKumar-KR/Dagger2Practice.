@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,10 +29,16 @@ import pl.droidsonroids.gif.GifImageView;
 public class BlankFragment extends Fragment {
     ImageView imageView;
     View snackbarView;
-    Button previous, next;
+    Button previousButton, nextButton;
     GifImageView gifImageView;
     LinearLayout linearLayout;
     int currentIndex = 0;
+    RelativeLayout relativeLayout;
+    Button stopAnimationButton;
+    Button startAnimationButton;
+
+    LayoutInflater inflater;
+    View animationView;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -39,28 +46,49 @@ public class BlankFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        RelativeLayout relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_blank, container, false);
+        relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_blank, container, false);
+
+        //inflating layout
+        animationView = inflater.inflate(R.layout.animator_layout, container, false);
+
+        //bindings manually
         imageView = (ImageView) relativeLayout.findViewById(R.id.imageView);
         snackbarView = relativeLayout.findViewById(R.id.snackbar);
-        previous = (Button) relativeLayout.findViewById(R.id.previousImage);
-        next = (Button) relativeLayout.findViewById(R.id.nextImage);
+        previousButton = (Button) relativeLayout.findViewById(R.id.previousImage);
+        nextButton = (Button) relativeLayout.findViewById(R.id.nextImage);
+        startAnimationButton = (Button) relativeLayout.findViewById(R.id.animator);
+        stopAnimationButton = (Button) animationView.findViewById(R.id.stopButton);
         gifImageView = (GifImageView) relativeLayout.findViewById(R.id.endOfSlideGifs);
         linearLayout = (LinearLayout) relativeLayout.findViewById(R.id.fragGifLayout);
+
         gifImageView.setVisibility(View.INVISIBLE);
+        removeUrls();
         setImageUrls();
         loadImage(imageUrls.get(currentIndex));
-        previous.setOnClickListener(new View.OnClickListener() {
+        previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 previousImage();
             }
         });
-        next.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 nextImage();
+            }
+        });
+        startAnimationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inflateLayout(container);
+            }
+        });
+        stopAnimationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopAnimation();
             }
         });
         return relativeLayout;
@@ -75,8 +103,8 @@ public class BlankFragment extends Fragment {
                         .into(imageView);
             }
         });
-        next.setVisibility(View.VISIBLE);
-        previous.setVisibility(View.VISIBLE);
+        nextButton.setVisibility(View.VISIBLE);
+        previousButton.setVisibility(View.VISIBLE);
     }
 
     void nextImage() {
@@ -84,8 +112,9 @@ public class BlankFragment extends Fragment {
             currentIndex = currentIndex + 1;
             loadImage(imageUrls.get(currentIndex));
         } else {
-            next.setVisibility(View.INVISIBLE);
-            previous.setVisibility(View.INVISIBLE);
+            nextButton.setVisibility(View.INVISIBLE);
+            previousButton.setVisibility(View.INVISIBLE);
+            startAnimationButton.setVisibility(View.INVISIBLE);
             gifImageView.setImageResource(R.drawable.lastimage);
             gifImageView.setVisibility(View.VISIBLE);
             Snackbar snackbar = Snackbar.make(snackbarView, "this is the last image", Snackbar.LENGTH_LONG);
@@ -97,7 +126,8 @@ public class BlankFragment extends Fragment {
                 @Override
                 public void run() {
                     gifImageView.setVisibility(View.INVISIBLE);
-                    previous.setVisibility(View.VISIBLE);
+                    previousButton.setVisibility(View.VISIBLE);
+                    startAnimationButton.setVisibility(View.VISIBLE);
                 }
             }, 4500);
         }
@@ -110,8 +140,9 @@ public class BlankFragment extends Fragment {
             currentIndex = currentIndex - 1;
             loadImage(imageUrls.get(currentIndex));
         } else {
-            next.setVisibility(View.INVISIBLE);
-            previous.setVisibility(View.INVISIBLE);
+            nextButton.setVisibility(View.INVISIBLE);
+            previousButton.setVisibility(View.INVISIBLE);
+            startAnimationButton.setVisibility(View.INVISIBLE);
             gifImageView.setImageResource(R.drawable.startingimage);
             gifImageView.setVisibility(View.VISIBLE);
             Snackbar snackbar = Snackbar.make(snackbarView, "this is the starting image", Snackbar.LENGTH_LONG);
@@ -123,12 +154,34 @@ public class BlankFragment extends Fragment {
                 @Override
                 public void run() {
                     gifImageView.setVisibility(View.INVISIBLE);
-                    next.setVisibility(View.VISIBLE);
+                    nextButton.setVisibility(View.VISIBLE);
+                    startAnimationButton.setVisibility(View.VISIBLE);
                 }
             }, 4500);
         }
 
 
+    }
+
+    void inflateLayout(ViewGroup container) {
+        relativeLayout.removeAllViews();
+        startAnimationButton.setVisibility(View.INVISIBLE);
+        nextButton.setVisibility(View.INVISIBLE);
+        previousButton.setVisibility(View.INVISIBLE);
+        relativeLayout.addView(animationView);
+    }
+
+    void stopAnimation() {
+        if (animationView != null) {
+            if (animationView.isShown()) {
+                relativeLayout.setVisibility(View.VISIBLE);
+                animationView.setVisibility(View.INVISIBLE);
+                relativeLayout.bringToFront();
+                startAnimationButton.setVisibility(View.VISIBLE);
+                nextButton.setVisibility(View.VISIBLE);
+                previousButton.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 }

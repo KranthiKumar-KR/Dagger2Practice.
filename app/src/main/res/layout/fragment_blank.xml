@@ -20,6 +20,14 @@
         android:text="Previous" />
 
     <Button
+        android:id="@+id/animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Animator" />
+
+    <Button
         android:id="@+id/nextImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,14 +49,13 @@
     </android.support.design.widget.CoordinatorLayout>
 
     <LinearLayout
+        android:id="@+id/fragGifLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragGifLayout">
+        android:layout_height="match_parent">
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/endOfSlideGifs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-             />
+            android:layout_height="match_parent" />
     </LinearLayout>
 </RelativeLayout>

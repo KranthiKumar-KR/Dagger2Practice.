@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 gifLayout.setVisibility(View.GONE);
             }
-        }, 10000);
+        }, 3000);
     }
 
 }
