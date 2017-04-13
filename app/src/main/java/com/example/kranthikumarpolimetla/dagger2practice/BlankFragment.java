@@ -1,6 +1,7 @@
 package com.example.kranthikumarpolimetla.dagger2practice;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
@@ -18,7 +19,12 @@ import android.widget.TextView;
 
 import static com.example.kranthikumarpolimetla.dagger2practice.picasso.LoadImage.*;
 
+import com.example.kranthikumarpolimetla.dagger2practice.animation.Animator;
+import com.example.kranthikumarpolimetla.dagger2practice.util.Navigator;
+import com.example.kranthikumarpolimetla.dagger2practice.util.NavigatorSupport;
 import com.squareup.picasso.Picasso;
+
+import javax.inject.Inject;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -27,6 +33,10 @@ import pl.droidsonroids.gif.GifImageView;
  * A simple {@link Fragment} subclass.
  */
 public class BlankFragment extends Fragment {
+    @Inject
+    Animator animator;
+
+    //fragment elements
     ImageView imageView;
     View snackbarView;
     Button previousButton, nextButton;
@@ -34,11 +44,17 @@ public class BlankFragment extends Fragment {
     LinearLayout linearLayout;
     int currentIndex = 0;
     RelativeLayout relativeLayout;
-    Button stopAnimationButton;
     Button startAnimationButton;
 
+    //animator layout elements
+    Button stopAnimationButton;
+    Button inflatorAnimateButton;
+    ImageView dog, headphones, sleepify;
+    TextView headsetWarning;
     LayoutInflater inflater;
     View animationView;
+
+    NavigatorSupport navigatorSupport;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -48,21 +64,31 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+        animator.getInstance().getAnimatorComponent().inject(this);
+
         relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_blank, container, false);
 
         //inflating layout
         animationView = inflater.inflate(R.layout.animator_layout, container, false);
 
         //bindings manually
+
+        //fragment elements binding
         imageView = (ImageView) relativeLayout.findViewById(R.id.imageView);
         snackbarView = relativeLayout.findViewById(R.id.snackbar);
         previousButton = (Button) relativeLayout.findViewById(R.id.previousImage);
         nextButton = (Button) relativeLayout.findViewById(R.id.nextImage);
         startAnimationButton = (Button) relativeLayout.findViewById(R.id.animator);
-        stopAnimationButton = (Button) animationView.findViewById(R.id.stopButton);
         gifImageView = (GifImageView) relativeLayout.findViewById(R.id.endOfSlideGifs);
         linearLayout = (LinearLayout) relativeLayout.findViewById(R.id.fragGifLayout);
 
+        //animator elements binding
+        stopAnimationButton = (Button) animationView.findViewById(R.id.stopButton);
+        inflatorAnimateButton = (Button) animationView.findViewById(R.id.animateButton);
+        dog = (ImageView) animationView.findViewById(R.id.sleepingDog);
+        headphones = (ImageView) animationView.findViewById(R.id.headset);
+        sleepify = (ImageView) animationView.findViewById(R.id.sleepifyText);
+        headsetWarning = (TextView) animationView.findViewById(R.id.headsetWarning);
         gifImageView.setVisibility(View.INVISIBLE);
         removeUrls();
         setImageUrls();
@@ -91,7 +117,51 @@ public class BlankFragment extends Fragment {
                 stopAnimation();
             }
         });
+        inflatorAnimateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startAnimation(dog, headphones, sleepify, headsetWarning);
+            }
+        });
         return relativeLayout;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof NavigatorSupport) {
+            navigatorSupport = (NavigatorSupport) context;
+        } else
+            throw new RuntimeException("Activity must implement NavigatorSupport");
+    }
+
+    @Override
+    public void onDetach() {
+        navigatorSupport = null;
+        super.onDetach();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        navigatorSupport.setAddButtonVisibility(false);
+        navigatorSupport.setLoadImageButtonVisibility(false);
+    }
+
+    @Override
+    public void onPause() {
+        navigatorSupport.setAddButtonVisibility(true);
+        navigatorSupport.setLoadImageButtonVisibility(true);
+        super.onPause();
+
+    }
+
+    @Override
+    public void onStop() {
+        navigatorSupport.setLoadImageButtonVisibility(true);
+        navigatorSupport.setAddButtonVisibility(true);
+        super.onStop();
+
     }
 
     private void loadImage(final String url) {
@@ -174,6 +244,8 @@ public class BlankFragment extends Fragment {
     void stopAnimation() {
         if (animationView != null) {
             if (animationView.isShown()) {
+                navigatorSupport.setLoadImageButtonVisibility(true);
+                navigatorSupport.setAddButtonVisibility(true);
                 relativeLayout.setVisibility(View.VISIBLE);
                 animationView.setVisibility(View.INVISIBLE);
                 relativeLayout.bringToFront();
@@ -182,6 +254,15 @@ public class BlankFragment extends Fragment {
                 previousButton.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    void startAnimation(View dog, View headset, View sleepify, View headsetWarningIn) {
+        animator.simpleAnimation(dog, headset, sleepify);
+        animator.rotationAnimation(headset);
+        this.headsetWarning.setText("Please plug in the Headset for better sleep");
+
+        animator.animateText(headsetWarningIn);
+
     }
 
 }

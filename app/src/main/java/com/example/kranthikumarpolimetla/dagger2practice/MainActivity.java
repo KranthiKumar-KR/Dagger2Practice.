@@ -12,11 +12,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+
+import com.example.kranthikumarpolimetla.dagger2practice.util.Navigator;
+import com.example.kranthikumarpolimetla.dagger2practice.util.NavigatorSupport;
 
 import javax.inject.Inject;
 
@@ -25,9 +27,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.droidsonroids.gif.GifImageView;
 
-import static android.support.design.widget.Snackbar.make;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigatorSupport {
 
     @Inject
     AddNums addNums;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.button)
     Button add;
+
+    @BindView(R.id.Imgbutton)
+    Button loadImageButton;
 
     @BindView(R.id.result)
     TextView output;
@@ -63,19 +67,25 @@ public class MainActivity extends AppCompatActivity {
         gifLayout.setVisibility(View.VISIBLE);
         hideGIF();
         AddNums.getInstance().getAddNumsComponent().inject(this);
+
     }
 
     public void addClicked(View view) {
-        numb1 = Integer.parseInt(num1.getText().toString());
-        numb2 = Integer.parseInt(num2.getText().toString());
-        output.setText(addNums.adding(numb1, numb2)+"");
+        try {
+            numb1 = Integer.parseInt(num1.getText().toString());
+            numb2 = Integer.parseInt(num2.getText().toString());
+        } catch (Exception e) {
+            Toast.makeText(this, "please enter the valid numbers", Toast.LENGTH_SHORT).show();
+        }
+
+        output.setText(String.valueOf(addNums.adding(numb1, numb2)));
        Snackbar snackbar= Snackbar.make(snackbarView, "your result is" +addNums.adding(numb1, numb2), Snackbar.LENGTH_LONG);
         View view2 = snackbar.getView();
         TextView tv = (TextView) view2.findViewById(android.support.design.R.id.snackbar_text);
         tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         snackbar.show();
     }
-    @OnClick (R.id.Imgbutton)
+
     public void loadImage(View view) {
         BlankFragment fragment= new BlankFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -92,4 +102,18 @@ public class MainActivity extends AppCompatActivity {
         }, 3000);
     }
 
+    @Override
+    public void setAddButtonVisibility(boolean visible) {
+        add.setVisibility(visible ? View.VISIBLE: View.GONE);
+    }
+
+    @Override
+    public void setLoadImageButtonVisibility(boolean visible) {
+loadImageButton.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void goToAnimation() {
+
+    }
 }

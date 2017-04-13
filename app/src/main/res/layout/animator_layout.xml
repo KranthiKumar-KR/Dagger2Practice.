@@ -44,4 +44,11 @@
         android:layout_marginStart="13dp"
         android:text="stop" />
 
+    <TextView
+        android:id="@+id/headsetWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/headset"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
