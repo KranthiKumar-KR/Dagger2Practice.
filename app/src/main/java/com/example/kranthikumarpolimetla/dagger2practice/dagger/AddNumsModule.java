@@ -17,11 +17,12 @@ import dagger.Provides;
 public class AddNumsModule {
     private final AddNums addNums;
 
-    public AddNumsModule (AddNums addNums) {
+    public AddNumsModule(AddNums addNums) {
         this.addNums = addNums;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     public AddNums provideContext() {
         return addNums;
     }
