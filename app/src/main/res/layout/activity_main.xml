@@ -2,58 +2,88 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kranthikumarpolimetla.dagger2practice.MainActivity">
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your result here"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/number1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Number 1"
-        android:inputType="textPersonName|number"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:layout_above="@+id/number2"
-        android:layout_alignLeft="@+id/number2"
-        android:layout_alignStart="@+id/number2"
-        android:layout_marginBottom="29dp"
-        android:imeOptions="actionNext"/>
 
-    <EditText
-        android:id="@+id/number2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Number 2"
-        android:inputType="textPersonName|number"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="99dp"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp"
-        android:imeOptions="actionDone"/>
+        <EditText
+            android:id="@+id/number1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="29dp"
+            android:ems="10"
+            android:hint="Number 1"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName|number"
+            android:textAlignment="center" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="addClicked"
-        android:text="add"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="176dp"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/result"
-        android:layout_alignEnd="@+id/result" />
+        <EditText
+            android:id="@+id/number2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="54dp"
+            android:ems="10"
+            android:hint="Number 2"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName|number"
+            android:textAlignment="center" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addClicked"
+            android:text="add" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:hint="your result is here"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/Imgbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="loadImage"
+            android:text="Load Image" />
+    </LinearLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/snackbarPosition"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/snackbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:id="@+id/gifLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000"
+            android:src="@drawable/giphy" />
+    </LinearLayout>
 </RelativeLayout>
