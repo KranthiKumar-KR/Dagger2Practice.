@@ -11,8 +11,6 @@ import com.example.kranthikumarpolimetla.dagger2practice.dagger.DaggerAddNumsCom
  */
 
 public class AddNums extends Application{
-    // this is for testing git flow
-
     private int num1;
     private int num2;
 
