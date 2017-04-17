@@ -10,11 +10,11 @@ import com.example.kranthikumarpolimetla.dagger2practice.dagger.DaggerAddNumsCom
  * Created by kranthikumarpolimetla on 4/6/17.
  */
 
-public class AddNums extends Application{
+public class AddNums extends Application {
     private int num1;
     private int num2;
 
-    private  static AddNums instance = new AddNums();
+    private static AddNums instance = new AddNums();
     private static AddNumsComponent addNumsComponent;
 
 
@@ -25,7 +25,7 @@ public class AddNums extends Application{
     }
 
 
-    public  AddNumsComponent getAddNumsComponent() {
+    public AddNumsComponent getAddNumsComponent() {
         if (addNumsComponent == null) {
             addNumsComponent = DaggerAddNumsComponent.builder()
                     .addNumsModule(new AddNumsModule(this))
@@ -35,12 +35,13 @@ public class AddNums extends Application{
         return addNumsComponent;
     }
 
-    public static AddNums getInstance(){
+    public static AddNums getInstance() {
         return instance;
     }
 
     /**
      * this method is  to add two numbers that are passed as arguments
+     *
      * @param numA number1 to add
      * @param numB number2 to add
      */
