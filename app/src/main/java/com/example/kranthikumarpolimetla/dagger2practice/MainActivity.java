@@ -24,9 +24,6 @@ import pl.droidsonroids.gif.GifImageView;
 
 
 public class MainActivity extends AppCompatActivity implements NavigatorSupport {
-//this is for testing git flow
-
-
     @Inject
     AddNums addNums;
     int numb1;
@@ -76,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigatorSupport 
         }
 
         output.setText(String.valueOf(addNums.adding(numb1, numb2)));
-       Snackbar snackbar= Snackbar.make(snackbarView, "your result is" +addNums.adding(numb1, numb2), Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(snackbarView, "your result is" + addNums.adding(numb1, numb2), Snackbar.LENGTH_LONG);
         View view2 = snackbar.getView();
         TextView tv = (TextView) view2.findViewById(android.support.design.R.id.snackbar_text);
         tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -84,12 +81,13 @@ public class MainActivity extends AppCompatActivity implements NavigatorSupport 
     }
 
     public void loadImage(View view) {
-        BlankFragment fragment= new BlankFragment();
+        BlankFragment fragment = new BlankFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.mainLayout, fragment); // fragment container id in first parameter is the  container(Main layout id) of Activity
         transaction.addToBackStack(null);  // this will manage backstack
         transaction.commit();
     }
+
     public void hideGIF() {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -101,12 +99,12 @@ public class MainActivity extends AppCompatActivity implements NavigatorSupport 
 
     @Override
     public void setAddButtonVisibility(boolean visible) {
-        add.setVisibility(visible ? View.VISIBLE: View.GONE);
+        add.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public void setLoadImageButtonVisibility(boolean visible) {
-loadImageButton.setVisibility(visible ? View.VISIBLE : View.GONE);
+        loadImageButton.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     @Override
