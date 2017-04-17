@@ -12,11 +12,11 @@ import dagger.Component;
 
 
 @Singleton
-@Component (
+@Component(
         modules = {
                 AddNumsModule.class
         }
 )
 public interface AddNumsComponent {
-    void inject (MainActivity mainActivity);
+    void inject(MainActivity mainActivity);
 }
