@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import static com.example.kranthikumarpolimetla.dagger2practice.picasso.LoadImage.*;
 
 import com.example.kranthikumarpolimetla.dagger2practice.animation.Animator;
-import com.example.kranthikumarpolimetla.dagger2practice.util.Navigator;
 import com.example.kranthikumarpolimetla.dagger2practice.util.NavigatorSupport;
 import com.squareup.picasso.Picasso;
 
@@ -259,8 +257,7 @@ public class BlankFragment extends Fragment {
     void startAnimation(View dog, View headset, View sleepify, View headsetWarningIn) {
         animator.simpleAnimation(dog, headset, sleepify);
         animator.rotationAnimation(headset);
-        this.headsetWarning.setText("Please plug in the Headset for better sleep");
-
+        this.headsetWarning.setText(this.getString(R.string.headset_Warning));
         animator.animateText(headsetWarningIn);
 
     }

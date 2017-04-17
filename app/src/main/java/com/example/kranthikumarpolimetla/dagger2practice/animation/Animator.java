@@ -1,27 +1,17 @@
 package com.example.kranthikumarpolimetla.dagger2practice.animation;
 
 import android.app.Application;
-import android.graphics.Color;
-import android.os.Handler;
-import android.os.Looper;
+
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.kranthikumarpolimetla.dagger2practice.dagger.AnimatorComponent;
 import com.example.kranthikumarpolimetla.dagger2practice.dagger.MyAnimatorModule;
 import com.example.kranthikumarpolimetla.dagger2practice.dagger.DaggerAnimatorComponent;
-import com.example.kranthikumarpolimetla.dagger2practice.dagger.DaggerImageComponent;
-import com.example.kranthikumarpolimetla.dagger2practice.dagger.MyAnimatorModule;
-import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
 
-import java.util.Locale;
 
 /**
  * Created by cyma on 4/12/2017.
