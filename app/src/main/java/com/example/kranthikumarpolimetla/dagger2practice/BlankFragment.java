@@ -31,6 +31,9 @@ import pl.droidsonroids.gif.GifImageView;
  * A simple {@link Fragment} subclass.
  */
 public class BlankFragment extends Fragment {
+
+    //this is for testing git flow
+
     @Inject
     Animator animator;
 

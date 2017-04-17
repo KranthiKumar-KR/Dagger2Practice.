@@ -24,6 +24,8 @@ import pl.droidsonroids.gif.GifImageView;
 
 
 public class MainActivity extends AppCompatActivity implements NavigatorSupport {
+//this is for testing git flow
+
 
     @Inject
     AddNums addNums;
