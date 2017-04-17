@@ -6,7 +6,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.kranthikumarpolimetla.dagger2practice"
-        minSdkVersion 15
+        minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -26,7 +26,6 @@ dependencies {
         exclude group: "com.android.support", module: "support-annotations"
     })
     compile "com.android.support:appcompat-v7:25.3.1"
-    compile "com.android.support.constraint:constraint-layout:1.0.0-beta4"
     testCompile "junit:junit:4.12"
 
     //Dagger 2 dependency injection
@@ -36,8 +35,21 @@ dependencies {
 
     //Butterknife
     def butterknifeVersion = "8.4.0";
-     compile "com.jakewharton:butterknife:$butterknifeVersion"
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     compile 'com.android.support:support-annotations:25.3.1'
+
+    //design support
+    compile "com.android.support:design:25.3.1"
+
+    //picasso
+    def picassoVersion = "2.4.0";
+    compile "com.squareup.picasso:picasso:$picassoVersion"
+
+    //gif images support
+    compile "pl.droidsonroids.gif:android-gif-drawable:1.2.6"
+
+//view animator
+    compile "com.github.florent37:viewanimator:1.0.4"
 }
