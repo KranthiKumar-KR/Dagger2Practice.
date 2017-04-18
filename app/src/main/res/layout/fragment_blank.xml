@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="Previous" />
+        android:text="@string/previous" />
 
     <Button
         android:id="@+id/animator"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Animator" />
+        android:text="@string/Animator" />
 
     <Button
         android:id="@+id/nextImage"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Next" />
+        android:text="@string/Next" />
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/snackbar"

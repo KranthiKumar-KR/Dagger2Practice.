@@ -27,7 +27,7 @@
         android:layout_marginBottom="35dp" />
     <Button
         android:id="@+id/animateButton"
-        android:text="animate"
+        android:text="@string/animate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -42,7 +42,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="13dp"
-        android:text="stop" />
+        android:text="@string/stop" />
 
     <TextView
         android:id="@+id/headsetWarning"
