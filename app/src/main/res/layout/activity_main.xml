@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="29dp"
             android:ems="10"
-            android:hint="Number 1"
+            android:hint="@string/number1"
             android:imeOptions="actionNext"
             android:inputType="textPersonName|number"
             android:textAlignment="center" />
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="54dp"
             android:ems="10"
-            android:hint="Number 2"
+            android:hint="@string/number2"
             android:imeOptions="actionDone"
             android:inputType="textPersonName|number"
             android:textAlignment="center" />
@@ -42,14 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="addClicked"
-            android:text="add" />
+            android:text="@string/add" />
 
         <TextView
             android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="54dp"
-            android:hint="your result is here"
+            android:hint="@string/your_result_is_here"
             android:textAlignment="center" />
 
         <Button
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="loadImage"
-            android:text="Load Image" />
+            android:text="@string/Load_Image" />
     </LinearLayout>
 
     <android.support.design.widget.CoordinatorLayout
