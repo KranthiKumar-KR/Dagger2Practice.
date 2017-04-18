@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Dagger2Practice</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="add">add</string>
+    <string name="your_result_is_here">Your result is here</string>
+    <string name="Load_Image">Load Image</string>
+    <string name="number1">Number 1</string>
+    <string name="number2">number 2</string>
+    <string name="animate">Animate</string>
+    <string name="stop">Stop</string>
+    <string name="previous">Previous</string>
+    <string name="Animator">Animator</string>
+    <string name="Next">Next</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="headset_Warning">Please plug in the Headset for better Experience</string>
 </resources>
