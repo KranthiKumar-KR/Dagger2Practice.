@@ -1,6 +1,5 @@
 package com.example.kranthikumarpolimetla.dagger2practice.dagger;
 
-import com.example.kranthikumarpolimetla.dagger2practice.picasso.Image;
 import com.example.kranthikumarpolimetla.dagger2practice.picasso.LoadImage;
 
 import javax.inject.Singleton;

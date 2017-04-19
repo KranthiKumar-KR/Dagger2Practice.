@@ -1,7 +1,6 @@
 package com.example.kranthikumarpolimetla.dagger2practice.dagger;
 
 import com.example.kranthikumarpolimetla.dagger2practice.BlankFragment;
-import com.example.kranthikumarpolimetla.dagger2practice.animation.Animator;
 
 import javax.inject.Singleton;
 

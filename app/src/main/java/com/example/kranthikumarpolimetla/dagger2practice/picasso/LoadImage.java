@@ -1,13 +1,9 @@
 package com.example.kranthikumarpolimetla.dagger2practice.picasso;
 
-import android.app.Application;
 
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.inject.Inject;
 
 /**
  * Created by cyma on 4/7/2017.

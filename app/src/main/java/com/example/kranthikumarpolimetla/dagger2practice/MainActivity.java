@@ -89,12 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigatorSupport 
     }
 
     public void hideGIF() {
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gifLayout.setVisibility(View.GONE);
-            }
-        }, 3000);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> gifLayout.setVisibility(View.GONE), 3000);
     }
 
     @Override
