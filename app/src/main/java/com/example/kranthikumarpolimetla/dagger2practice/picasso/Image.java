@@ -1,14 +1,5 @@
 package com.example.kranthikumarpolimetla.dagger2practice.picasso;
 
-import android.app.Application;
-
-
-import com.example.kranthikumarpolimetla.dagger2practice.dagger.DaggerImageComponent;
-import com.example.kranthikumarpolimetla.dagger2practice.dagger.ImageComponent;
-import com.example.kranthikumarpolimetla.dagger2practice.dagger.ImageModule;
-
-import java.util.ArrayList;
-
 /**
  * Created by cyma on 4/7/2017.
  */
