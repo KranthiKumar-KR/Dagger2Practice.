@@ -49,7 +49,6 @@ public class BlankFragment extends Fragment {
     Button inflatorAnimateButton;
     ImageView dog, headphones, sleepify;
     TextView headsetWarning;
-    LayoutInflater inflater;
     View animationView;
 
     NavigatorSupport navigatorSupport;
@@ -62,7 +61,7 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        animator.getInstance().getAnimatorComponent().inject(this);
+        Animator.getInstance().getAnimatorComponent().inject(this);
 
         relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_blank, container, false);
 
@@ -91,36 +90,11 @@ public class BlankFragment extends Fragment {
         removeUrls();
         setImageUrls();
         loadImage(imageUrls.get(currentIndex));
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                previousImage();
-            }
-        });
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nextImage();
-            }
-        });
-        startAnimationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inflateLayout(container);
-            }
-        });
-        stopAnimationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stopAnimation();
-            }
-        });
-        inflatorAnimateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startAnimation(dog, headphones, sleepify, headsetWarning);
-            }
-        });
+        previousButton.setOnClickListener(e -> previousImage());
+        nextButton.setOnClickListener( e -> nextImage());
+        startAnimationButton.setOnClickListener(e -> inflateLayout());
+        stopAnimationButton.setOnClickListener(e -> stopAnimation());
+        inflatorAnimateButton.setOnClickListener(e -> startAnimation(dog, headphones, sleepify, headsetWarning));
         return relativeLayout;
     }
 
@@ -163,18 +137,12 @@ public class BlankFragment extends Fragment {
     }
 
     private void loadImage(final String url) {
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                Picasso.with(getActivity())
-                        .load(url)
-                        .into(imageView);
-            }
-        });
+        new Handler(Looper.getMainLooper()).post(() -> Picasso.with(getActivity())
+                .load(url)
+                .into(imageView));
         nextButton.setVisibility(View.VISIBLE);
         previousButton.setVisibility(View.VISIBLE);
     }
-
     void nextImage() {
         if (currentIndex < imageUrls.size() - 1) {
             currentIndex = currentIndex + 1;
@@ -190,13 +158,10 @@ public class BlankFragment extends Fragment {
             TextView tv = (TextView) view2.findViewById(android.support.design.R.id.snackbar_text);
             tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             snackbar.show();
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    gifImageView.setVisibility(View.INVISIBLE);
-                    previousButton.setVisibility(View.VISIBLE);
-                    startAnimationButton.setVisibility(View.VISIBLE);
-                }
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                gifImageView.setVisibility(View.INVISIBLE);
+                previousButton.setVisibility(View.VISIBLE);
+                startAnimationButton.setVisibility(View.VISIBLE);
             }, 4500);
         }
 
@@ -218,20 +183,17 @@ public class BlankFragment extends Fragment {
             TextView tv = (TextView) view2.findViewById(android.support.design.R.id.snackbar_text);
             tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             snackbar.show();
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
+            new Handler(Looper.getMainLooper()).postDelayed( () -> {
                     gifImageView.setVisibility(View.INVISIBLE);
                     nextButton.setVisibility(View.VISIBLE);
                     startAnimationButton.setVisibility(View.VISIBLE);
-                }
             }, 4500);
         }
 
 
     }
 
-    void inflateLayout(ViewGroup container) {
+    void inflateLayout() {
         relativeLayout.removeAllViews();
         startAnimationButton.setVisibility(View.INVISIBLE);
         nextButton.setVisibility(View.INVISIBLE);
