@@ -7,7 +7,9 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Created by kranthikumarpolimetla on 4/6/17.
+ * Created by KR on 4/6/17.
+ * it is a dagger component class where we can see all the module classes that provide dependency and
+ * all the target classes where we need this dependency
  */
 
 
