@@ -8,8 +8,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by kranthikumarpolimetla on 4/6/17.
+/***
+ * it is module class to provide AddNums dependency
  */
 
 @Module
@@ -22,7 +22,7 @@ public class AddNumsModule {
 
     @Provides
     @Singleton
-    public AddNums provideContext() {
+     AddNums provideContext() {
         return addNums;
     }
 
